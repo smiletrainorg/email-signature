@@ -74,6 +74,12 @@
                             <input type="text" class="form-control" name="address" ng-model="address">
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for="address2" class="col-sm-3 control-label">{{t_address2}}:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="address2" ng-model="address2">
+                        </div>
+                    </div>
 
                     <div class="form-group">
                         <label for="phone" class="col-sm-3 control-label">{{t_phone}}:</label>
@@ -82,12 +88,12 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="tieline" class="col-sm-3 control-label">{{t_tieline}}:</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" name="tieline" ng-model="tieline">
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="form-group">
                         <label for="mobile" class="col-sm-3 control-label">{{t_mobile}}:</label>
@@ -117,7 +123,7 @@
                                 </td>
                                 <td width="425" valign="top" style="font-family:arial; font-size:12px;line-height:14px;">
                                     <div style="font-family:arial; font-size:12px;"><!--removed spaces in elements to deal with zeroclipboard leaving blank spaces -->
-                                        <span ng-show="fullname" style="font-family:arial; font-size:12px;line-height:14px;"><strong>{{fullname}}</strong><br/></span><span ng-if="the_title">{{the_title}}<br/></span><span ng-if="address">{{address}}<br/></span><span ng-if="phone">Phone: {{phone}}<br/></span><span ng-if="tieline">Tieline: {{tieline}}<br/></span><span ng-if="mobile">Mobile: {{mobile}}<br/></span><span ng-if="email">{{email}}<br><br></span><span ng-show="t_signature != emptyImage"><img  ng-src="{{t_signature.url}}" alt="" width="{{t_signature.width}}"></span><br/><em>{{t_environment}}</em>
+                                        <span ng-show="fullname" style="font-family:arial; font-size:12px;line-height:14px;"><strong>{{fullname}}</strong><br/></span><span ng-if="the_title">{{the_title}}<br/></span><span ng-if="address">{{address}}<br/></span><span ng-if="address">{{address2}}<br/></span><span ng-if="phone">Phone: {{phone}}<br/></span><!--<span ng-if="tieline">Tieline: {{tieline}}<br/></span>--><span ng-if="mobile">Mobile: {{mobile}}<br/></span><span ng-if="email">{{email}}<br><br></span><span ng-show="t_signature != emptyImage"><img  ng-src="{{t_signature.url}}" alt="" width="{{t_signature.width}}"></span><br/><em>{{t_environment}}</em>
                                     </div>
                                 </td>
                             </tr>
