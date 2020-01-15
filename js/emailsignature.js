@@ -52,7 +52,7 @@ myApp.controller('language_switch', function($scope) {
             }],
             logo: "img/SmileTrainLogo.png",
             instructions: "<p><strong>Instructions:</strong></p><ol><li>From Outlook, click on the <strong>File</strong> tab. </li><li>Select <strong>Options</strong>.</li><li>Click on <strong>Mail</strong>.</li><li>Click on the <strong>Signatures</strong> button.  </li><li>This will pop open a Signature Window.</li><li>To create a new signature, click on the <strong>New</strong> button.</li><li>You will be asked to type in a name for this signature such. Enter name for signature and click <strong>OK</strong>. </li><li>Paste into the Signature window to edit</li><li>Select the signature name to apply to <strong>New messages</strong></li><li>Select to apply it to <strong>Replies/Forwards</strong></li><li>Click <strong>Ok</strong></li><li>Your signature will now be appended to all New Messages and all Replies/Forwarded Messages.</li></ol>",
-            intro_sentence: "Enter all the information below and you will then be able to copy and paste your personal Avon signature code."
+            intro_sentence: "Enter all the information below and you will then be able to copy and paste your personal Smile Train signature code."
         },
         "es": {
             fullname: "Nombre completo",
@@ -70,7 +70,7 @@ myApp.controller('language_switch', function($scope) {
             }],
             logo: "img/SmileTrainLogo.png",
             instructions: "Translated Information in Spanish",
-            intro_sentence: "Llene toda la información abajo y usted será capaz de copiar y pegar su firma personal de Avon."
+            intro_sentence: "Llene toda la información abajo y usted será capaz de copiar y pegar su firma personal de Smile Train."
         },
         "pt": {
             fullname: "Nome completo",
