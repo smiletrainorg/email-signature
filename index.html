@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Email Signature Creator</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <style>
+    body{padding-top:20px;}td{font-family: arial;font-size: 12px;line-height: 14px;}.clear20{height:20px;}
+    .clip_button{text-align: center;border: 1px solid black;background-color: #ccc;margin: 10px;padding: 10px;}
+    .clip_button.zeroclipboard-is-hover { background-color: #eee; }.clip_button.zeroclipboard-is-active { background-color: #aaa; }
+    .ng-hide {display: block!important;position: absolute;top: -9999px;left: -9999px;}
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.8.0/angular-translate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular-sanitize.min.js"></script>
+    <script src="js/clipboard.min.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="language_switch">
+
+
+<div ng-cloak>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="btn-group">
+                  <button ng-repeat="i in langs" type="button" ng-click="switch_lang(i.name)" class="btn btn-default" ng-class="{'btn-primary': $parent.lang_isselected(i)}" aria-expanded="false">{{i.title}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="clearfix clear20"></div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <p ng-bind-html="t_intro_sentence"></p>
+
+                <form class="form-horizontal" name="email_sig_form">
+                    <div class="form-group">
+                        <label class="checkbox-inline" ng-repeat="i in t_logo_images">
+                            <input type="radio" ng-model="$parent.t_logo" ng-value="i.url">
+                            <img ng-src="{{i.url}}" style="width:50%" />
+                        </label>
+                    </div>
+
+                    <hr style="margin:10px 0;">
+
+                    <div class="form-group">
+                        <label for="fullname" class="col-sm-3 control-label">{{t_fullname}}:</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" name="fullname" ng-model="fullname">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="title" class="col-sm-3 control-label">{{t_title}}:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="the_title" ng-model="the_title">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address" class="col-sm-3 control-label">{{t_address}}:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="address" ng-model="address">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone" class="col-sm-3 control-label">{{t_phone}}:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="phone" ng-model="phone">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tieline" class="col-sm-3 control-label">{{t_tieline}}:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="tieline" ng-model="tieline">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mobile" class="col-sm-3 control-label">{{t_mobile}}:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="mobile" ng-model="mobile">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="col-sm-3 control-label">{{t_email}}:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="email" ng-model="email">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-7">
+                <button id="copy-button" class="pull-right btn btn-info btn-default" title="Click me to copy to clipboard.">{{t_copy_me_text}}</button>
+                <div class="clearfix"></div>
+                <div style="outline:1px dashed #ccc;margin:10px 0 0 0;padding:5px;font-family:arial; font-size:12px;">
+                    <div id="my_email_signature">
+                        <table width="612" cellspacing="0" cellpadding="0" border="0">
+                            <tbody>
+                            <tr>
+                                <td width="188" valign="top">
+                                    <img width="150" ng-src="{{t_logo}}" alt="Logo">
+                                </td>
+                                <td width="425" valign="top" style="font-family:arial; font-size:12px;line-height:14px;">
+                                    <div style="font-family:arial; font-size:12px;"><!--removed spaces in elements to deal with zeroclipboard leaving blank spaces -->
+                                        <span ng-show="fullname" style="font-family:arial; font-size:12px;line-height:14px;"><strong>{{fullname}}</strong><br/></span><span ng-if="the_title">{{the_title}}<br/></span><span ng-if="address">{{address}}<br/></span><span ng-if="phone">Phone: {{phone}}<br/></span><span ng-if="tieline">Tieline: {{tieline}}<br/></span><span ng-if="mobile">Mobile: {{mobile}}<br/></span><span ng-if="email">{{email}}<br><br></span><span ng-show="t_signature != emptyImage"><img  ng-src="{{t_signature.url}}" alt="" width="{{t_signature.width}}"></span><br/><em>{{t_environment}}</em>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="clearfix clear20"></div>
+                <div ng-bind-html="t_instructions"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script charset="utf-8" src="js/emailsignature.js"></script>
+</body>
+</html>
